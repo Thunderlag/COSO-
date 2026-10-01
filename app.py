@@ -32,7 +32,7 @@ if st.button("Aplicar Formato Profesional"):
         with st.spinner("Estandarizando texto y protegiendo métricas..."):
             try:
                 respuesta = cliente.models.generate_content(
-                    model='gemini-2.5-flash',
+                    model='gemini-3.5-flash-lite',
                     contents=instruccion,
                 )
                 
