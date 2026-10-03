@@ -24,6 +24,7 @@ if st.button("Aplicar Formato Profesional"):
         1. Tono: Formal pero ágil, directo y empático. Sin introducciones floridas.
         2. Integridad de datos: NO modifiques, redondees ni elimines ninguna cifra, patente, horario, volumen, peso o métrica mencionada.
         3. Formato: Entrega únicamente el texto final corregido, listo para copiar y pegar. No incluyas frases como "Aquí tienes el texto".
+        4. Formato: letra tipo Arial tamaño 12
         
         Texto a corregir: 
         {texto_original}
