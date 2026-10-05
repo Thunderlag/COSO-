@@ -6,7 +6,7 @@ st.set_page_config(page_title="Corrector Logístico", page_icon="🚛", layout="
 st.title("🚛 Asistente de Correos - Logística")
 st.write("Ajusta ortografía, gramática y tono corporativo sin alterar patentes, kilos ni horarios.")
 
-# Inicialización segura diseñada para Streamlit Cloud
+# Inicialización segura diseñada para Streamlit
 try:
     cliente = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 except KeyError:
@@ -23,23 +23,23 @@ if st.button("Aplicar Formato Profesional"):
         Reglas estrictas:
         1. Tono: Formal pero ágil, directo y empático. Sin introducciones floridas.
         2. Integridad de datos: NO modifiques, redondees ni elimines ninguna cifra, patente, horario, volumen, peso o métrica mencionada.
-        3. Formato: Entrega únicamente el texto final corregido, listo para copiar y pegar. No incluyas frases como "Aquí tienes el texto".
-        4. Formato: letra tipo Arial tamaño 12
+        3. Formato: Entrega únicamente el texto final corregido, listo para copiar y pegar. No incluyas frases de cortesía en tu respuesta.
         
         Texto a corregir: 
         {texto_original}
         """
-        
+
         with st.spinner("Estandarizando texto y protegiendo métricas..."):
             try:
+                # Se restaura el modelo original solicitado
                 respuesta = cliente.models.generate_content(
                     model='gemini-3.5-flash-lite',
                     contents=instruccion,
                 )
-                
+
                 st.success("✅ Listo para copiar y enviar:")
-                st.code(respuesta.text.strip(), language="markdown")
-                
+                st.text_area("Resultado", value=respuesta.text.strip(), height=200, label_visibility="collapsed")
+
             except Exception as e:
                 st.error(f"Falla de conexión con el modelo: {e}")
     else:
